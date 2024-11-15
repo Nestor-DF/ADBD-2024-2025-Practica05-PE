@@ -22,5 +22,5 @@ echo "Limpiando recursos no utilizados..."
 docker system prune -a --volumes -f
 
 # Construir y levantar los servicios con docker-compose
-echo "Ejecutando docker-compose up --build..."
-docker-compose up --build
+# echo "Ejecutando docker-compose up --build..."
+# docker-compose up --build

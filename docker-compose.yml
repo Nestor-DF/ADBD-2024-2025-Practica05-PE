@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:15
     container_name: postgres
     environment:
       POSTGRES_USER: admin
@@ -18,7 +18,7 @@ services:
     image: prometheuscommunity/postgres-exporter
     container_name: postgres_exporter
     environment:
-      DATA_SOURCE_NAME: "postgresql://admin:admin123@postgres:5432/mydb?sslmode=disable"
+      DATA_SOURCE_NAME: "user=admin password=admin123 host=postgres port=5432 dbname=mydb sslmode=disable"
     depends_on:
       - postgres
     ports:
@@ -41,6 +41,8 @@ services:
 
   grafana:
     image: grafana/grafana:latest
+    logging:
+      driver: "none"  # Esto muteará todos los logs de este contenedor
     container_name: grafana
     ports:
       - "3000:3000"
